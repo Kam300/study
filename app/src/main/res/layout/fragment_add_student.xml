@@ -21,14 +21,14 @@
         android:layout_height="wrap_content"
         android:hint="Имя Студента"
         />
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Выберите группу чтобы сохранить"
+    android:textAlignment="center"
+    />
     <Spinner
         android:id="@+id/spinner_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Spinner
-        android:id="@+id/spinner_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

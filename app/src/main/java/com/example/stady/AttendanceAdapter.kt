@@ -33,7 +33,7 @@ class AttendanceAdapter(
 
         val studentAttendance = attendanceList[position]
         studentName.text = studentAttendance.student.name
-        attendanceStatus.text = if (studentAttendance.isPresent) "Present" else "Absent"
+        attendanceStatus.text = if (studentAttendance.isPresent) "Присуствует" else "Отсуствует или нет информации"
 
         return view
     }

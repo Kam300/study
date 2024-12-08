@@ -7,6 +7,29 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ViewAttendanceFragment">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Выберите группу"
+        android:textAlignment="center"
+        />
+    <Spinner
+        android:id="@+id/spinner_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Выберите группу" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Выберите номер пары"
+        android:textAlignment="center"
+        />
+    <Spinner
+        android:id="@+id/spinner_class_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Выберите номер пары" />
 
     <Button
         android:id="@+id/btn_load_attendance"

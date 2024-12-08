@@ -36,15 +36,12 @@ class AddStudentFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view_students)
 
         // Установка данных в Spinner для группы
-        val groups = listOf("Группа 1", "Группа 2", "Группа 3")
+        val groups = listOf("ИСпП-22-1", "Группа 2", "Группа 3")
         val groupAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, groups)
         groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerGroup.adapter = groupAdapter
 
-        // Установка данных в Spinner для дисциплины
-        val subjects = listOf("Дисциплина 1", "Дисциплина 2", "Дисциплина 3")
-        val subjectAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, subjects)
-        subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
 
 
         // Инициализация RecyclerView

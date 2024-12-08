@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
@@ -26,8 +27,8 @@ class PresidentFragment : Fragment() {
     private lateinit var groupSpinner: Spinner
     private lateinit var classNumberSpinner: Spinner
 
-    private val groups = listOf("Группа 1", "Группа 2", "Группа 3") // Примеры групп
-    private val classNumbers = listOf(1, 2, 3) // Примеры номеров пар
+    private val groups = listOf("ИСпП-22-1", "Группа 2", "Группа 3") // Группы
+    private val classNumbers = listOf(1, 2, 3, 4, 5, 6, 7, 8) // Примеры номеров пар
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,21 +44,33 @@ class PresidentFragment : Fragment() {
 
         // Настройка адаптеров для спиннеров
         groupSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, groups)
-
         classNumberSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, classNumbers)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Устанавливаем адаптер для RecyclerView
         studentAttendanceAdapter = StudentAttendanceAdapter(studentAttendanceList) { student, isPresent ->
             // Устанавливаем присутствие для студента
             studentAttendanceList.find { it.student.id == student.id }?.isPresent = isPresent
         }
         recyclerView.adapter = studentAttendanceAdapter
 
+        // Загружаем студентов по выбранной группе
         loadStudents()
 
+        // Обработчик для кнопки сохранения посещаемости
         view.findViewById<Button>(R.id.btn_save_attendance).setOnClickListener {
             saveAttendance()
         }
+
+        // Обработчик для изменения выбора группы
+        groupSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                loadStudents() // Перезагрузить студентов при выборе группы
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        })
 
         return view
     }
@@ -65,9 +78,10 @@ class PresidentFragment : Fragment() {
     private fun loadStudents() {
         lifecycleScope.launch {
             // Получение списка студентов из БД
-            studentDao.getAllStudents().collect { students ->
+            val selectedGroup = groupSpinner.selectedItem.toString()
+            studentDao.getStudentsByGroup(selectedGroup).collect { students ->
                 studentAttendanceList.clear()
-                studentAttendanceList.addAll(students.map { StudentAttendance(it, false) }) // Изначально, все отсутствуют
+                studentAttendanceList.addAll(students.map { StudentAttendance(it, false) }) // Изначально все отсутствуют
                 studentAttendanceAdapter.notifyDataSetChanged()
             }
         }
@@ -76,7 +90,6 @@ class PresidentFragment : Fragment() {
     private fun saveAttendance() {
         lifecycleScope.launch {
             // Получаем выбранные данные
-            val selectedGroup = groupSpinner.selectedItem.toString()
             val selectedClassNumber = classNumberSpinner.selectedItem as Int
 
             studentAttendanceList.forEach { studentAttendance ->

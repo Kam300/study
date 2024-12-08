@@ -12,6 +12,9 @@ interface StudentDao {
     @Insert
     suspend fun insertStudent(student: Student)
 
+    @Query("SELECT * FROM students WHERE `group` = :group")
+    fun getStudentsByGroup(group: String): Flow<List<Student>>
+
     @Query("SELECT * FROM students")
     fun getAllStudents(): Flow<List<Student>>
 
@@ -20,8 +23,7 @@ interface StudentDao {
 
     @Update
     suspend fun updateStudent(student: Student) // Метод для обновления студента
-
-
 }
+
 
 
