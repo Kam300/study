@@ -1,0 +1,45 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.stady.MainFragment"
+        android:label="Главное меню" >
+        <action
+            android:id="@+id/action_mainFragment_to_teacherFragment3"
+            app:destination="@id/teacherFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_presidentFragment"
+            app:destination="@id/presidentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/teacherFragment"
+        android:name="com.example.stady.TeacherFragment"
+        android:label="Меню преподавателя" >
+        <action
+            android:id="@+id/action_teacherFragment_to_addStudentFragment2"
+            app:destination="@id/addStudentFragment" />
+        <action
+            android:id="@+id/action_teacherFragment_to_viewAttendanceFragment2"
+            app:destination="@id/viewAttendanceFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/presidentFragment"
+        android:name="com.example.stady.PresidentFragment"
+        android:label="Меню старосты" />
+
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="com.example.stady.AddStudentFragment"
+        android:label="Добавить студента" />
+
+    <fragment
+        android:id="@+id/viewAttendanceFragment"
+        android:name="com.example.stady.ViewAttendanceFragment"
+        android:label="Просмотр посещаемости" />
+
+</navigation>
