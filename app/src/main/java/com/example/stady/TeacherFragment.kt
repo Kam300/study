@@ -27,6 +27,10 @@ class TeacherFragment : Fragment() {
             findNavController().navigate(R.id.action_teacherFragment_to_viewAttendanceFragment2)
         }
 
+        view.findViewById<Button>(R.id.btn_view_student).setOnClickListener {
+            findNavController().navigate(R.id.action_teacherFragment_to_fragment_teacher_view2)
+        }
+
         return view
     }
 }

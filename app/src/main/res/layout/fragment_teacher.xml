@@ -27,4 +27,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Посмотреть посещаемость" />
+    <Button
+        android:id="@+id/btn_view_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Просмотр студентов" />
+
 </LinearLayout>

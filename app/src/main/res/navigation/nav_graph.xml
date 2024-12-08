@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_teacherFragment_to_viewAttendanceFragment2"
             app:destination="@id/viewAttendanceFragment" />
+        <action
+            android:id="@+id/action_teacherFragment_to_fragment_teacher_view2"
+            app:destination="@id/fragmentTeacherView2" /> <!-- Измените здесь на правильное имя -->
     </fragment>
 
     <fragment
@@ -42,4 +45,8 @@
         android:name="com.example.stady.ViewAttendanceFragment"
         android:label="Просмотр посещаемости" />
 
+    <fragment
+        android:id="@+id/fragmentTeacherView2"
+        android:name="com.example.stady.FragmentTeacherView2"
+        tools:layout="@layout/fragment_president" />
 </navigation>
